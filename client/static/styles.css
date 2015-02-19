@@ -1,9 +1,16 @@
 * {
-  border: 2px solid blue;
+  border: 1px solid blue;
 }
 
 .player {
-  width: 800px;
+  width: 100%;
   margin: 0 auto;
   display: table;
+}
+
+
+.nextsong {
+  font-size: 4em;
+  display: table;
+  margin: 20px auto;
 }
