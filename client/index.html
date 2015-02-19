@@ -59,7 +59,7 @@
         var songsQueue = new SongQueue();
         var app = new AppModel({library: library, queue: songsQueue});
         // build a view for the top level of the whole app
-        var appView = new AppView({model: app});
+        var appView = new AppView({el: $('.container'), model: app});
       });
     </script>
   </body>

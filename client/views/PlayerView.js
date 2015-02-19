@@ -19,7 +19,7 @@ var PlayerView = Backbone.View.extend({
   },
 
   songEnd: function() {
-    return this.el.ended || !this.el.currentSrc;
+    return this.el.ended || this.el.played.length === 0;
   },
 
   events: {
@@ -32,8 +32,10 @@ var PlayerView = Backbone.View.extend({
 
   },
   render: function() {
-      if (_.has(this.model.attributes, 'title')) {
+      if (this.model && _.has(this.model.attributes, 'title')) {
         this.$el.closest('div').find('h1').html(this.template(this.model.attributes));
+      } else {
+        this.$el.closest('div').find('h1').html('Click Song to Play!');
       }
     }
 

@@ -19,18 +19,26 @@ var AppView = Backbone.View.extend({
       }
     }, this);
 
-    this.model.get('library').on('requestNewSong', function(){
-      var queue = this.model.get('queue');
-      if ( queue.length > 0 ) {
-        var nextSong = queue.first();
-        queue.remove(nextSong);
-        this.playerView.setSong(nextSong);
-      }
-    }, this);
+    this.model.get('library').on('requestNewSong', this.updateCurrentSong, this);
+
   },
 
-  render: function(){
+  updateCurrentSong: function() {
+    var queue = this.model.get('queue');
+    if ( queue.length > 0 ) {
+      var nextSong = queue.first();
+      queue.remove(nextSong);
+      this.playerView.setSong(nextSong);
+    } else {
+      this.playerView.el.currentSrc = '';
+      this.playerView.setSong(null);
+    }
+  },
 
+  events: {
+    'click .skip' : function() {
+       this.updateCurrentSong();
+    }
   }
 
 });
