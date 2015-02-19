@@ -1,5 +1,10 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <link type="text/css" rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="static/styles.css">
+  </head>
+
   <body>
     <!-- Scripts may be placed anywhere on a page. But FYI, they block rendering of elements
      below them until after the scripts load-->
@@ -21,11 +26,27 @@
     <script src="views/SongQueueView.js"></script>
     <script src="views/SongQueueEntryView.js"></script>
 
-    <audio controls autoplay class="player"></audio>
-    <table class="queue">
-    </table>
-    <table class="library">
-    </table>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 songtitle">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+            <audio controls autoplay class="player"></audio>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+            <table class="queue">
+            </table>
+        </div>
+        <div class="col-md-6">
+            <table class="library">
+            </table>
+        </div>
+      </div>
+    </div>
     <script>
       $(function(){
         // set up model objects

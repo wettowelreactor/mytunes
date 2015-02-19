@@ -1,0 +1,9 @@
+* {
+  border: 2px solid blue;
+}
+
+.player {
+  width: 800px;
+  margin: 0 auto;
+  display: table;
+}
