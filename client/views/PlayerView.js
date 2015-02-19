@@ -17,6 +17,11 @@ var PlayerView = Backbone.View.extend({
     this.render();
   },
 
+  songEnd: function() {
+    var audio = this.$el.find('audio')[0];
+    return audio.ended || !audio.currentSrc;
+  },
+
   render: function(){
     if( this.$el.find('audio').length === 0 ) {
       this.$el.append(this.template());
