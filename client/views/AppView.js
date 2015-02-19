@@ -19,8 +19,13 @@ var AppView = Backbone.View.extend({
       }
     }, this);
 
-    this.playerView.model.on('requestNewSong', function(){
-      console.log(this);
+    this.model.get('library').on('requestNewSong', function(){
+      var queue = this.model.get('queue');
+      if ( queue.length > 0 ) {
+        var nextSong = queue.first();
+        queue.remove(nextSong);
+        this.playerView.setSong(nextSong);
+      }
     }, this);
   },
 
