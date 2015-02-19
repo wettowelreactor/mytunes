@@ -35,9 +35,17 @@ var AppView = Backbone.View.extend({
     }
   },
 
+  randomizeQueue: function() {
+    var queue = this.model.get('queue');
+    queue.reset(queue.shuffle());
+  },
+
   events: {
     'click .skip' : function() {
        this.updateCurrentSong();
+    },
+    'click .random' : function() {
+      this.randomizeQueue();
     }
   }
 
