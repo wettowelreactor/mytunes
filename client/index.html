@@ -21,6 +21,11 @@
     <script src="views/SongQueueView.js"></script>
     <script src="views/SongQueueEntryView.js"></script>
 
+    <audio controls autoplay class="player"></audio>
+    <table class="queue">
+    </table>
+    <table class="library">
+    </table>
     <script>
       $(function(){
         // set up model objects
@@ -31,11 +36,5 @@
         var appView = new AppView({model: app});
       });
     </script>
-    <div class="player">
-    </div>
-    <table class="queue">
-    </table>
-    <table class="library">
-    </table>
   </body>
 </html>

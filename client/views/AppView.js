@@ -18,6 +18,10 @@ var AppView = Backbone.View.extend({
         this.model.get('queue').addSong(song);
       }
     }, this);
+
+    this.playerView.model.on('requestNewSong', function(){
+      console.log(this);
+    }, this);
   },
 
   render: function(){
