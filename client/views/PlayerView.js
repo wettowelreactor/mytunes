@@ -15,7 +15,9 @@ var PlayerView = Backbone.View.extend({
   setSong: function(song){
     this.model = song;
     this.$el.attr('src', this.model ? this.model.get('url') : '');
-    this.model.set('songCount', this.model.get('songCount') + 1);
+    if (this.model !== null){
+      this.model.set('songCount', this.model.get('songCount') + 1);
+    }
     this.render();
   },
 

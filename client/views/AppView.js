@@ -23,6 +23,13 @@ var AppView = Backbone.View.extend({
 
   },
 
+  syncPlayer: function() {
+    var library = this.model.get('library');
+    var queue = this.model.get('queue');
+    library.sync('create', library);
+    queue.sync('create', queue);
+  },
+
   updateCurrentSong: function() {
     var queue = this.model.get('queue');
     if ( queue.length > 0 ) {

@@ -5,7 +5,8 @@
     "jquery": "~2.0.3",
     "underscore": "~1.5.2",
     "backbone": "~1.0.0",
-    "bootstrap": "~3.3.2"
+    "bootstrap": "~3.3.2",
+    "backbone.localstorage": "~1.1.16"
   },
   "ignore": [
     "**/.*",
