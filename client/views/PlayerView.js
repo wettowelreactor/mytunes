@@ -7,10 +7,10 @@ var PlayerView = Backbone.View.extend({
   // el: '<audio controls autoplay />',
 
   initialize: function() {
-    this.render();
+    this.initialRender();
   },
 
-  template: _.template('<h1><%= title %> by <%= artist %></h1>'),
+  template: _.template('<%= title %> by <%= artist %>'),
 
   setSong: function(song){
     this.model = song;
@@ -27,11 +27,14 @@ var PlayerView = Backbone.View.extend({
       this.model.requestNewSong();
     }
   },
+  initialRender: function() {
+    this.$el.closest('div').prepend('<h1>Click Song to Play!</h1>');
 
+  },
   render: function() {
-    if (_.has(this.model.attributes, 'title')) {
-      this.$el.closest('div').prepend(this.template(this.model.attributes));
+      if (_.has(this.model.attributes, 'title')) {
+        this.$el.closest('div').find('h1').html(this.template(this.model.attributes));
+      }
     }
-  }
 
 });
