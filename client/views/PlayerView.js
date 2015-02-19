@@ -10,6 +10,8 @@ var PlayerView = Backbone.View.extend({
     this.render();
   },
 
+  template: _.template('<h1><%= title %> by <%= artist %></h1>'),
+
   setSong: function(song){
     this.model = song;
     this.$el.attr('src', this.model ? this.model.get('url') : '');
@@ -23,6 +25,12 @@ var PlayerView = Backbone.View.extend({
   events: {
     'ended' : function() {
       this.model.requestNewSong();
+    }
+  },
+
+  render: function() {
+    if (_.has(this.model.attributes, 'title')) {
+      this.$el.closest('div').prepend(this.template(this.model.attributes));
     }
   }
 
