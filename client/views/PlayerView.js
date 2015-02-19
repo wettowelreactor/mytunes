@@ -10,11 +10,12 @@ var PlayerView = Backbone.View.extend({
     this.initialRender();
   },
 
-  template: _.template('<%= title %> by <%= artist %>'),
+  template: _.template('<%= title %> by <%= artist %> played <%= songCount %> times.'),
 
   setSong: function(song){
     this.model = song;
     this.$el.attr('src', this.model ? this.model.get('url') : '');
+    this.model.set('songCount', this.model.get('songCount') + 1);
     this.render();
   },
 
