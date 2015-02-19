@@ -3,11 +3,16 @@ var SongQueue = Backbone.Collection.extend({
   model: SongModel,
 
   initialize: function(){
-    this.on('queueSong', 'addSong', this);
+    this.on('dequeueSong', this.dequeueSong, this);
   },
 
   addSong: function(song) {
     this.add(song);
+  },
+
+  dequeueSong: function(song) {
+    console.log('SongQeue dequeue');
+    this.remove(song);
   }
 
 
