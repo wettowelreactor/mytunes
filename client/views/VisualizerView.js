@@ -13,12 +13,16 @@ var VisualizerView = Backbone.View.extend({
     var dataArray = new Uint8Array(bufferLength);
     analyser.getByteTimeDomainData(dataArray);
 
-    // draw an oscilloscope of the current audio source
+    var freqDomain = new Float32Array(analyser.frequencyBinCount);
+    analyser.getFloatFrequencyData(freqDomain);
+
 
     var draw = function () {
       var WIDTH = 1024;
       var HEIGHT = 360;
       drawVisual = requestAnimationFrame(draw.bind(this));
+      var freqDomain = new Uint8Array(analyser.frequencyBinCount);
+      analyser.getByteFrequencyData(freqDomain);
 
       analyser.getByteTimeDomainData(dataArray);
 
@@ -26,7 +30,7 @@ var VisualizerView = Backbone.View.extend({
       canvasCtx.fillRect(0, 0, WIDTH, HEIGHT);
 
       canvasCtx.lineWidth = 2;
-      canvasCtx.strokeStyle = 'rgb(255, 0, 0)';
+      canvasCtx.strokeStyle = 'rgb(255, 255, 255)';
 
       canvasCtx.beginPath();
 
@@ -45,6 +49,17 @@ var VisualizerView = Backbone.View.extend({
         }
 
         x += sliceWidth;
+      }
+
+      for (var i = 0; i < analyser.frequencyBinCount; i++) {
+        var value = freqDomain[i];
+        var percent = value / 256;
+        var height = HEIGHT * percent;
+        var offset = HEIGHT - height - 1;
+        var barWidth = WIDTH/analyser.frequencyBinCount;
+        var hue = i/analyser.frequencyBinCount * 360;
+        canvasCtx.fillStyle = 'hsl(' + hue + ', 100%, 50%)';
+        canvasCtx.fillRect(i * barWidth, offset, barWidth, height);
       }
 
       canvasCtx.lineTo(this.el.width, this.el.height/2);
